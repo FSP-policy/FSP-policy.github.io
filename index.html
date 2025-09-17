@@ -1,0 +1,1725 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="FSP | **">
+  <meta name="keywords" content="Data Generation, Imitation Learning, Visuomotor Policy, Robotic Manipulation, DemoGen, demogen">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+    FSP | Fast and Stable Placement with Tactile Sensor
+  </title>
+
+  <!-- Thumbnail for social media sharing -->
+  <!-- <meta property="og:image" content="media/images/gfkd_logo.png"> -->
+
+  <!-- Favicon -->
+  <!-- <link rel="icon" href="media/images/gfkd_logo.png" type="image/png"> -->
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+  </script>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <link rel="stylesheet" href="./static/source_serif_4.css">
+  <link rel="stylesheet" href="./static/source_sans_3.css">  
+  <link rel="stylesheet" href="./static/academicons.min.css">
+  <link rel="stylesheet" href="./static/fontawesome/css/fontawesome.css">
+  <link rel="stylesheet" href="./static/fontawesome/css/brands.css">
+  <link rel="stylesheet" href="./static/fontawesome/css/light.css">
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const videos = document.querySelectorAll('video');
+      videos.forEach(video => {
+        video.loop = false; // 确保视频不会循环播放
+        video.addEventListener('ended', function() {
+          this.pause(); // 播放结束后暂停在最后一帧
+          video.removeAttribute("controls");
+          setTimeout(() => {
+            this.currentTime = 0;
+            this.play();
+          }, 4000);
+        });
+      });
+    });
+  </script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+</head>
+<!-- <body onload="updateInTheWild();updateBimanual();"> -->
+
+
+  
+<section class="hero">
+  <div class="hero-body" style="padding-top: 1.5%;">
+    <div class="container is-fullhd">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title" style="color:#008000; white-space: nowrap;">
+            <span style="font-style: italic; font-weight: 800;">
+              FSP:
+            </span>
+            <span>
+              Fast and Stable Placement <br> with Tactile Sensor
+            </span>
+          </h1>
+          <div class="is-size-4 accepted" style="color:#008000">
+            under review
+          </div>
+          <!-- <div class="is-size-5 award" style="color:#008000">
+            Robot Learning Workshop, ICLR 2025 (Oral)
+          </div> -->
+          <br>
+          <!-- <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a target="_blank" href="https://steven-xzr.github.io/">Shilong Zou</a><sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a target="_blank" href="https://shuyingdeng.github.io/">Shuying Deng</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a target="_blank" href="https://chenzheny.github.io/">Zhenyang Chen</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a target="_blank" href="https://openreview.net/profile?id=~Yixuan_Wang19">Yixuan Wang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a target="_blank" href="https://gemcollector.github.io/">Zhecheng Yuan</a><sup>1,2,3</sup>,
+            </span>
+            <span class="author-block">
+              <a target="_blank" href="http://hxu.rocks/">Kai Xu</a><sup>1,2</sup>
+            </span>
+          </div> -->
+          <!-- <div class="is-size-5 affiliation">
+            <sup>1</sup>National University of Defense Technology,
+            <sup>2</sup>Xiang Jiang Laboratory
+          </div> -->
+          <!-- <br> -->
+          <!-- <div class="affiliation-note">
+            <sup>*</sup> indicates equal contributions
+          </div> -->
+          <div class="button-container">
+            <a href="**" target="_blank" class="button" style="background-color: #f2f2f2;border: transparent;"><i class="fa-light fa-file"></i>&emsp14;PDF</a>
+            <a href="https://arxiv.org/" target="_blank" class="button" style="background-color: #f2f2f2;border: transparent;"><i class="ai ai-arxiv"></i>&emsp14;arXiv</a>
+            
+            <!-- <a href="https://x.com/ZhengrongX" target="_blank" class="button" style="background-color: #f2f2f2;border: transparent;"><i class="fa-brands fa-x-twitter"></i>&emsp14;tl;dr</a> -->
+            <a href="https://github.com" target="_blank" class="button" style="background-color: #f2f2f2;border: transparent;"><i class="fa-light fa-code"></i>&emsp14;Code</a>
+            <!-- <a href="https://huggingface.co/datasets/Fanqi-Lin/Processed-Task-Dataset" target="_blank" class="button" style="background-color: #f2f2f2;border: transparent;"><i class="fa-light fa-folder"></i>&emsp14;Data</a> -->
+            <!-- <a href="https://b23.tv/6f23B5B" target="_blank" class="button" style="background-color: #f2f2f2;border: transparent;"><i class="fa-light fa-film"></i>&emsp14;直播</a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <!-- <div class="container is-max-widescreen">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-vcentered  is-centered">
+          <video id="teaser" controls height="100%" width="100%">
+            <source src="media/videos/teaser.mp4"
+                    type="video/mp4">
+          </video>
+          </br>
+        </div>
+        <br>
+        <h2 class="subtitle has-text-centered" style="margin-top: -0.8em;">
+        The <strong>O.O.D. generalization</strong> capabilities of visuomotor policies empowered by
+        <strong><i>DemoGen</i></strong>-generated synthetic demonstrations,
+          given <strong>only one</strong> human-collected demonstration per task.
+        </h2>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="container is-max-widescreen">
+  <hr style="margin-top: 1em;">
+  <div class="rows is-centered has-text-centered">
+    <h2 class="title is-3" style="margin-bottom: 0.5em; color:#008000">Comparison with the baseline method</h2>
+    </br>
+
+    <div class="rows">
+
+      <div class="columns video-columns" style="margin-bottom: 0.5rem;">
+        <div class="column has-text-centered">
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 0.2em; color:#008000">Stable Placement</h3>
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/duoduoningmeng/S.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 0.2em; color:#008000">Fast Placement</h3>
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/duoduoningmeng/F.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 0.2em; color:#008000">Diffusion Policy</h3>
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/duoduoningmeng/DP.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 0.2em; color:#008000">Ours w/o HA</h3>
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/duoduoningmeng/O_wo_HA.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <!-- <div class="column has-text-centered">
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 0.2em; color:#008000">Ours w/o tactile information</h3>
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/duoduoningmeng/O_wo_T.mp4" 
+            type="video/mp4">
+          </video>
+        </div> -->
+
+        <div class="column has-text-centered">
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 0.2em; color:#008000">Ours</h3>
+            <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/duoduoningmeng/O_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="columns video-columns">
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/chaxiaokai/S.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+            <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/chaxiaokai/F.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+          controls
+          muted
+          autoplay
+          controlsList="nodownload nofullscreen noplaybackrate"
+          width="99%">
+          <source src="media/videos_fsp/chaxiaokai/DP.mp4" 
+          type="video/mp4">
+        </video>
+      </div>
+
+        <div class="column has-text-centered">
+            <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/chaxiaokai/O_wo_HA.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <!-- <div class="column has-text-centered">
+            <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/chaxiaokai/O_wo_T.mp4" 
+            type="video/mp4">
+          </video>
+        </div> -->
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+          controls
+          muted
+          autoplay
+          controlsList="nodownload nofullscreen noplaybackrate"
+          width="99%">
+          <source src="media/videos_fsp/chaxiaokai/O_zoom_in.mp4" 
+          type="video/mp4">
+        </video>
+        </div>
+      </div>
+
+      <div class="columns video-columns">
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/ningmengcha/S.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/ningmengcha/F.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/ningmengcha/DP.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/ningmengcha/O_wo_HA.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <!-- <div class="column has-text-centered">
+          <video id="dist1"
+          controls
+          muted
+          autoplay
+          controlsList="nodownload nofullscreen noplaybackrate"
+          width="99%">
+          <source src="media/videos_fsp/ningmengcha/O_wo_T.mp4" 
+          type="video/mp4">
+        </video>
+        </div> -->
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/ningmengcha/O_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="columns video-columns">
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/weiC/S.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/weiC/F.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/weiC/DP.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/weiC/O_wo_HA.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <!-- <div class="column has-text-centered">
+          <video id="dist1"
+          controls
+          muted
+          autoplay
+          controlsList="nodownload nofullscreen noplaybackrate"
+          width="99%">
+          <source src="media/videos_fsp/weiC/O_wo_T.mp4" 
+          type="video/mp4">
+        </video>
+        </div> -->
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/weiC/O_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <!-- <div class="columns video-columns">
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/meiyitian/F.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/meiyitian/O_wo_HA.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/meiyitian/O_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="columns video-columns">
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/jinguiwulong/F.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/jinguiwulong/O_wo_HA.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/jinguiwulong/O_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="columns video-columns">
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/Calendar_Box/F.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/Calendar_Box/O_wo_HA.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/Calendar_Box/O_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div> -->
+      </div>
+
+      <h2 class="title is-3" style="margin-bottom: 0.5em; color:#008000">Comparison with the baseline method - Difficult objects</h2>
+      </br>
+
+
+      <div class="columns video-columns" style="margin-bottom: 0.5rem;">
+        <div class="column has-text-centered">
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 0.2em; color:#008000">Fast Placement</h3>
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/nongfushanquan_lego/F.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 0.2em; color:#008000">Ours w/o HD (hand adjustment)</h3>
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/nongfushanquan_lego/O_wo_HA.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 0.2em; color:#008000">Ours</h3>
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/nongfushanquan_lego/O_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="columns video-columns">
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/ningmengcha_lego/F.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/ningmengcha_lego/O_wo_HA.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/ningmengcha_lego/O_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="columns video-columns">
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/waixingren_inverted/F.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/waixingren_inverted/O_wo_HA.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/waixingren_inverted/O_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="columns video-columns">
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/duoduoningmeng_inverted/F.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/duoduoningmeng_inverted/O_wo_HA.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/duoduoningmeng_inverted/O_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <!-- <div class="columns video-columns">
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/meiyitian_synthetic/F.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/meiyitian_synthetic/O_wo_HA.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/meiyitian_synthetic/O.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+      </div> -->
+
+      <h2 class="title is-3" style="margin-bottom: 0.5em; color:#008000">Placement under different grasping position</h2>
+      </br>
+
+      <div class="columns video-columns" style="margin-bottom: 0.5rem;">
+        <div class="column has-text-centered">
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 0.2em; color:#008000">Height: ***</h3>
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/grasping_pos/3H_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 0.2em; color:#008000">Height: **</h3>
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/grasping_pos/2H_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 0.2em; color:#008000">Height: *</h3>
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/grasping_pos/1H_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="columns video-columns">
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/grasping_pos/3H_weiC_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/grasping_pos/2H_weiC_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/grasping_pos/1H_weiC_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <h2 class="title is-3" style="margin-bottom: 0.5em; color:#008000">Placement at different heights</h2>
+      </br>
+
+      <div class="columns video-columns" style="margin-bottom: 0.5rem;">
+        <div class="column has-text-centered">
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 0.2em; color:#008000">Height: ***</h3>
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/arm_position/3H_waixingren_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 0.2em; color:#008000">Height: **</h3>
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/arm_position/2H_waixingren_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 0.2em; color:#008000">Height: *</h3>
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/arm_position/1H_waixingren_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="columns video-columns" style="margin-bottom: 0.5rem;">
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/arm_position/3H_weiC_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/arm_position/2H_weiC_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/arm_position/1H_weiC_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <h2 class="title is-3" style="margin-bottom: 0.5em; color:#008000">Extended to diverse robot arm and end-effector</h2>
+      </br>
+
+      <div class="columns video-columns" style="margin-bottom: 0.5rem;">
+        <div class="column has-text-centered">
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 0.2em; color:#008000">Fast Placement</h3>
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/F.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 0.2em; color:#008000">Ours w/o GA (gripper adjustment)</h3>
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/O_wo_hand.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <h3 class="title is-4 has-text-centered" style="margin-bottom: 0.2em; color:#008000">Ours</h3>
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/O.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <h2 class="title is-3" style="margin-bottom: 0.5em; color:#008000">Visualization of real robot execution trajectory</h2>
+      </br>
+
+      <div class="columns video-columns" style="margin-bottom: 0.5rem;">
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/ningmengcha/O_visulization.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/wulongcha_height/O_visulization.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/meiyitian_synthetic/O_visulization.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <h2 class="title is-3" style="margin-bottom: 0.5em; color:#008000">More results in real-world scenarios</h2>
+      </br>
+
+      <div class="columns video-columns" style="margin-bottom: 0.5rem;">
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/more_results/cup_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/more_results/muyulu_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/more_results/haifeisi_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="columns video-columns" style="margin-bottom: 0.5rem;">
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/more_results/box_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/more_results/lanyueliang_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/more_results/bottle_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="columns video-columns" style="margin-bottom: 0.5rem;">
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/more_results/bottle2_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/more_results/ningmengcha_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/more_results/weiB_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+      </div>
+
+      <div class="columns video-columns" style="margin-bottom: 0.5rem;">
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/lanyueliang/O_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/haifeisi/O_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            controlsList="nodownload nofullscreen noplaybackrate"
+            width="99%">
+            <source src="media/videos_fsp/muyulu/O_zoom_in.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+        <!-- <div class="column has-text-centered">
+          <img style="margin-top: 20px;" src="media/images/task_summary.png" class="method-image" />
+        </div> -->
+      </div>
+
+    <!-- <div class="columns is-vcentered  is-centered">
+      <video id="method" autoplay muted loop  width="32%" style="margin-right: 5px;">
+        <source src="media/videos/live/source.mp4" type="video/mp4">
+      </video>
+      <video id="method" autoplay muted loop  width="32%" style="margin-right: 5px;">
+        <source src="media/videos/live/gen_and_train.mp4" type="video/mp4">
+      </video>
+      <video id="method" autoplay muted loop  width="32%" style="margin-right: 5px;">
+        <source src="media/videos/live/test.mp4" type="video/mp4">
+      </video>
+    </div> -->
+    <p class="content has-text-justified">
+      <i>DemoGen</i> is simple but it really works! To highlight its efficiency and effectiveness, we livestreamed its full pipeline: (1) collecting one source demo, 
+      (2) generating synthetic demos with <i>DemoGen</i>, (3) training Diffusion Policy, and (4) testing the trained policy on the real robot. The pipeline was finished in 
+      around <strong>30 minutes</strong>, and the trained policy achieved a <strong>100%</strong> success rate with <strong>O.O.D.</strong> configurations on a challenging Jar-Opening task.
+      An audience of 2,282 watched the livestream at REDnote (小红书, a Chinese social media platform) on Mar 12, 2025. The playback is available on <a href="https://b23.tv/6f23B5B" target="_blank">Bilibili</a>.
+  </div>
+  <br>
+
+
+<hr style="margin-top: 1em;">
+<div class="columns is-centered has-text-centered">
+  <div class="column is-four-fifths">
+    
+    <h2 class="title is-3" style="margin-bottom: 0.5em; color:#008000">Abstract</h2>
+    <img style="margin-bottom: 5px;" src="media/images/teaser.png" class="method-image" /><br>
+    <div class="content has-text-justified">
+      <p>
+        Visuomotor policies have shown great promise in robotic manipulation but often require substantial amounts of human-collected
+         data for effective performance. A key reason underlying the data demands is their limited <a href="#empirical">spatial generalization</a> capability, 
+         which necessitates extensive data collection across different object configurations. In this work, we present <i>DemoGen</i>, 
+         a low-cost, fully synthetic approach for automatic demonstration generation. Using only one human-collected demonstration per task,
+         <i>DemoGen</i> generates spatially augmented demonstrations by adapting the demonstrated action trajectory to novel object configurations. 
+         Visual observations are synthesized by leveraging 3D point clouds as the modality and rearranging the subjects in the scene via
+         3D editing. Empirically, <i>DemoGen</i> significantly enhances policy performance across a diverse range of real-world manipulation tasks,
+         showing its applicability even in challenging scenarios involving deformable objects, dexterous hand end-effectors, and bimanual platforms.
+         Furthermore, <i>DemoGen</i> can be extended to enable additional out-of-distribution capabilities, including disturbance resistance and obstacle avoidance.
+      </p>
+    </div>
+  </div>
+</div>
+
+
+
+<hr style="margin-top: 1em;">
+<div class="rows is-centered has-text-centered">
+  <h2 class="title is-3" style="margin-bottom: 0.5em; color:#008000"><i>FSP</i> Methods</h2>
+  </br>
+  <div class="columns is-vcentered  is-centered">
+    <video id="method" autoplay muted loop  height="30%" width="30%" style="margin-right: 5px;">
+      <source src="media/videos/method.mp4" type="video/mp4">
+    </video>
+    <video id="method-examples" autoplay muted loop  height="68%" width="68%" style="margin-left: 5px;">
+      <source src="media/videos/method-examples.mp4" type="video/mp4">
+    </video>
+  </div>
+  <p class="content has-text-justified">
+    <i>DemoGen</i> adapts actions in the source demonstration to novel object configurations by incorporating the ideas of Task and Motion Planning (TAMP). 
+    Specifically, the source trajectory is decomposed into object-centric <strong>motion segments</strong> moving in free space and <strong>skill segments</strong> involving on-object manipulation through contact.
+    During generation, the skill segments are transformed as a whole, and the motion segments are replanned via motion planning. 
+    The corresponding visual observations are synthesized by choosing 3D point clouds as the modality and rearranging the objects and robot end-effectors in the scene via 3D editing.
+  </p>
+</div>
+
+
+<br>
+<hr style="margin-top: 1em;">
+<div class="rows is-centered has-text-centered">
+  <h2 class="title is-3" style="margin-bottom: 0.8em; color:#008000"><i>DemoGen</i> for Spatial Generalization</h2>
+    <h3 class="title is-4" style="margin-bottom: 0.5em; color:#008000">Simulated Experiments</h3>
+      <div class="columns is-vcentered  is-centered">
+        <img style="margin-top: 15px; width: 90%;" src="media/images/sim-tasks.png" class="method-image" />
+      </div>
+      <div class="columns is-vcentered  is-centered">
+        <img style="margin-top: 15px; width: 90%;" src="media/images/sim-results.png" class="method-image" />
+      </div>
+      <p class="content has-text-justified">
+        The effectiveness of <i>DemoGen</i> is verified on 8 modified MetaWorld tasks with enlarged object randomization ranges. 
+        We report the maximum/averaged success rates over 3 seeds of visuomotor policies trained on <i>DemoGen</i>-generated datasets with <strong>only one</strong>
+        source demonstration per task. The results indicate <i>DemoGen</i> has the potential to maintain the policy performance with over 20x reduced human effort for data collection.
+      </p>
+    <h3 class="title is-4" style="margin-top: 1.8em; margin-bottom: 0.5em; color:#008000">Real-World Protocols</h3>
+      <div class="columns is-vcentered  is-centered">
+        <img style="margin-top: 15px;" src="media/images/spatial-protocol.png" class="method-image" />
+      </div>
+      <p class="content has-text-justified">
+        We adhere to a rigorous protocol for evaluating spatial generalization. (a) Workspace setups. (b) The full-size evaluation 
+        workspace covering the full entend of the robot end-effectors on the table surface. 
+        (c) The <i>DemoGen</i> generation strategy targeting the evaluated configurations along with small-range perturbations.
+      </p>
+
+    <br>
+
+    <h3 class="title is-4" style="margin-bottom: 0.8em; color:#008000">Evaluation Videos</h3>
+    <div class="container block is-centered">
+      <div class="columns is-centered">
+        <div class="column is-2" style="width: 20%;">
+            <div class="select" style="display: block;">
+                <select id="task-selection" style="width: 100%;" onchange="SelectTestVideo()">
+                    <option value="spatula-egg">Spatula-Egg</option>
+                    <option value="flower-vase">Flower-Vase</option>
+                    <option value="mug-rack">Mug-Rack</option>
+                    <option value="dex-rollup">Dex-Rollup</option>
+                    <option value="dex-coffee">Dex-Coffee</option>
+                    <option value="dex-drill">Dex-Drill</option>
+                    <option value="dex-cube">Dex-Cube</option>
+                    <option value="fruit-basket">Fruit-Basket</option>
+                </select>
+            </div>
+        </div>
+        <div class="column is-2" style="width: 20%;">
+            <div class="select" style="display: block;">
+                <select id="spatial-selection" style="width: 100%;" onchange="SelectTestVideo()">
+                  <option value="ood1">O.O.D. #1</option>
+                  <option value="ood2">O.O.D. #2</option>
+                  <option value="ood3">O.O.D. #3</option>
+                  <option value="ood4">O.O.D. #4</option>
+                  <option value="fail">Failure</option>
+                </select>
+            </div>
+        </div>
+        <div class="column is-2">
+          <button class="button is-info is-outlined" id="shuffle-video" style="width: 80%; color: #008000; border-color: #008000;">
+              <span class="icon">
+                  <ion-icon name="shuffle-outline" role="img" class="md hydrated"></ion-icon>
+              </span>
+              <span>Shuffle</span>
+          </button>
+      </div>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column has-text-centered">
+        <p style="text-align:center;">
+          <video id="test-video" width="80%" height="80%" controls autoplay loop muted>
+            <source src="media/videos/evaluations/spatula-egg/ood1.mp4" type="video/mp4">
+          </video>
+        </p>
+      </div>
+    </div>
+    <p class="content" style="text-align: left">
+      For quantitative evaluation, we conudct a total of 530 policy rollouts on the 8 tasks with fully randomized object configurations 
+      within the feasible workspace range. Here, we provide the videos of 4 successful rollouts and 1 failed rollout for each of the 8 tasks.
+    </p>
+
+    <h3 class="title is-4" style="margin-top: 1.8em; margin-bottom: 0.5em; color:#008000">Quantitative Results</h3>
+    <div class="columns is-vcentered  is-centered">
+      <img style="margin-top: 15px; width: 90%;" src="media/images/real-results.png" class="method-image" />
+    </div>
+    <p class="content has-text-justified">
+      Compared with the source demonstrations, <i>DemoGen</i>-generated datasets enable the agents to display a more adaptive response to
+      diverse evaluated configurations, resulting in significantly higher success rates. Additionally, we visualize the spatial heatmaps
+      of success rates for the evaluated configurations, showing diminished success rates on configurations more far away from the demonstrated ones.
+      We attribute this decline to the <a href="#limitation">visual mismatch</a> problem caused by single-view observations.
+    </p>
+
+    <div class="rows is-centered has-text-centered">
+    <h2 id="cost" class="title is-4" style="margin-top: 1.8em; margin-bottom: 1.2em; color:#008000">Time Cost for Generating Real-World Demonstrations</h2>
+    <div class="columns">
+      <div class="columns is-vcentered  is-centered">
+        <img style="width: 80%; margin-top: 15px;" src="media/images/cost.png" class="method-image" />
+      </div>
+  
+      <div class="columns is-vcentered  is-centered">
+        <p class="content" style="text-align: left">
+          <i>DemoGen</i> adopts a cost-effective fully synthetic manner. It takes <i>DemoGen</i> only 22 seconds to generate 2214
+          demonstration trajectories, that is, ~147k observation-action pairs.
+          In contrast, <a href="https://mimicgen.github.io/">MimicGen</a> generates demonstrations via expensive on-robot rollouts,
+          hindering its deployment in real-world scenarios.
+        </p>
+      </div>
+    </div>
+</div>
+
+
+<br>
+<br>
+<hr style="margin-top: 1em;">
+<div class="rows is-centered has-text-centered">
+  <h2 class="title is-3" style="margin-bottom: 0.8em; color:#008000"><i>DemoGen</i> for Disturbance Resistance</h2>
+  <h3 class="title is-4" style="margin-bottom: 0.5em; color:#008000">Augmentation for Disturbance Resistance (ADR)</h3>
+  <br>
+  <div class="columns is-vcentered  is-centered">
+    <img style="width: 33%;" src="media/images/adr.png" class="method-image" />
+    <video id="method-examples" autoplay muted loop  height="59%" width="59%" style="margin-left: 5px;">
+      <source src="media/videos/adr.mp4" type="video/mp4">
+    </video>
+  </div>
+  <p class="content has-text-justified">
+    To mimic the recovery process from external disturbance, we develop a specialized generation strategy called 
+    <i>Augmentation for Disturbance Resistance (ADR)</i>, where asynchronous transformations are applied to the disturbed object
+    and the robot end-effector.
+  </p>
+
+    <h3 class="title is-4" style="margin-top: 1.8em; margin-bottom: 0.8em; color:#008000">Evaluation Videos</h3>
+    
+    <div class="container block is-centered">
+      <div class="columns is-centered">
+        <div class="column is-2" style="width: 22%;">
+            <div class="select" style="display: block;">
+                <select id="policy-disturb" style="width: 100%;" onchange="SelectDisturb()">
+                    <option value="adr"><i>DemoGen</i> w/ ADR</option>
+                    <option value="baseline">Regular <i>DemoGen</i></option>
+                </select>
+            </div>
+        </div>
+        <div class="column is-2" style="width: 17%;">
+            <div class="select" style="display: block;">
+                <select id="direction-disturb" style="width: 100%;" onchange="SelectDisturb()">
+                  <option value="front">Front</option>
+                  <option value="left">Left</option>
+                  <option value="right">Right</option>
+                  <option value="front-left">Front-Left</option>
+                  <option value="front-right">Front-Right</option>
+                </select>
+            </div>
+        </div>
+        <div class="column is-2" style="width: 15%;">
+          <div class="select" style="display: block;">
+              <select id="number-disturb" style="width: 100%;" onchange="SelectDisturb()">
+                <option value="1">Eval #1</option>
+                <option value="2">Eval #2</option>
+                <option value="3">Eval #3</option>
+                <option value="4">Eval #4</option>
+                <option value="5">Eval #5</option>
+              </select>
+          </div>
+      </div>
+        <div class="column is-2">
+          <button class="button is-info is-outlined" id="shuffle-disturb" style="width: 80%; color: #008000; border-color: #008000;">
+              <span class="icon">
+                  <ion-icon name="shuffle-outline" role="img" class="md hydrated"></ion-icon>
+              </span>
+              <span>Shuffle</span>
+          </button>
+      </div>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column has-text-centered">
+        <p style="text-align:center;">
+          <video id="test-disturb" width="80%" height="80%" controls autoplay loop muted>
+            <source src="media/videos/disturb_eval/adr/front/1.mp4" type="video/mp4">
+          </video>
+        </p>
+      </div>
+    </div>
+    <p class="content" style="text-align: left">
+      For quantitative comparison, we conduct policy rollouts using both the <i>DemoGen w/ ADR</i>-enabled policy and regular 
+      <i>DemoGen</i>-enabled policy, where we manually drag the pizza crust twice towards the neighboring cross markers. 
+      We repeat each setting for 5 times to produce reliable results. Here, we provide the videos for all of the 50 policy rollouts.
+    </p>
+
+    
+
+    <h3 class="title is-4" style="margin-top: 1.8em; margin-bottom: 0.5em; color:#008000">Quantitative Results</h3>
+    <br>
+    <div class="columns is-vcentered  is-centered">
+      <img style="width: 30%;" src="media/images/disturb-metrics.png" class="method-image" />
+      <img style="width: 48%; margin-left: 8px;" src="media/images/disturb-results.png" class="method-image" />
+    </div>
+    <p class="content has-text-justified">
+      For quantitative evaluation, we take pictures of the pizza crust after sauce spreading and calculate the sauce coverage on the crust
+      via color thresholding. Additionally, we report a normalized sauce coverage score, where 0 represents no operation taken and 100
+      corresponds to human expert performance. The <i>ADR</i> strategy significantly outperforms the baseline strategy designed for spatial
+      generation; it even approaches the human expert performance. This highlights the ability to resist disturbances does not emerge
+      naturally but is acquired through targeted disturbance-involved demonstrations.
+    </p>
+
+    <h3 class="title is-4" style="margin-top: 1.8em; margin-bottom: 1em; color:#008000">Robustness under Multiple Disturbances</h3>
+    <div class="columns is-centered">
+      <div class="column has-text-centered">
+        <p style="text-align:center;">
+          <video id="test-disturb" width="80%" height="80%" controls autoplay loop muted>
+            <source src="media/videos/disturb_multiple.mp4" type="video/mp4">
+          </video>
+        </p>
+      </div>
+    </div>
+    <p class="content" style="text-align: left">
+      Still starting with only one human-collected demonstration as the source demonstration, we show that
+       the <i>DemoGen w/ ADR</i>-enabled policy is robust under up to 5 times of random disturbances in a row.
+    </p>
+</div>
+
+<br>
+<hr style="margin-top: 1em;">
+<div class="rows is-centered has-text-centered">
+  <h2 class="title is-3" style="margin-bottom: 0.8em; color:#008000"><i>DemoGen</i> for Obstacle Avoidance</h2>
+  <h3 class="title is-4" style="margin-bottom: 0.5em; color:#008000">Augmentation for Obstacle Avoidance</h3>
+  <br>
+  <div class="columns is-vcentered  is-centered">
+    <video id="method-examples" autoplay muted loop  height="90%" width="90%" style="margin-left: 5px;">
+      <source src="media/videos/demogen_obstacle.mp4" type="video/mp4">
+    </video>
+  </div>
+  <p class="content has-text-justified">
+    To generate obstacle-involved demonstrations, we augment the real-world point cloud observations by sampling points 
+    from simple geometries, such as boxes and cones, and fusing these points into the original scene. Obstacle-avoiding 
+    trajectories are generated by a motion planning tool, ensuring collision-free actions.
+  </p>
+
+  <br>
+  <h3 class="title is-4" style="margin-bottom: 0.8em; color:#008000">Evaluation Videos</h3>
+    <div class="container block is-centered">
+      <div class="columns is-centered">
+        <div class="column is-2" style="width: 20%;">
+            <div class="select" style="display: block;">
+                <select id="object-obstacle" style="width: 100%;" onchange="SelectObstacle()">
+                    <option value="baseline">w/o DemoGen</option>
+                    <option value="cup">Cup</option>
+                    <option value="plushie">Plushie</option>
+                    <option value="skippy">Skippy</option>
+                    <option value="moon">Moon</option>
+                    <option value="no-obstacle">No Obstacle</option>
+                </select>
+            </div>
+        </div>
+        <div class="column is-2">
+          <button class="button is-info is-outlined" id="shuffle-obstacle" style="width: 80%; color: #008000; border-color: #008000;">
+              <span class="icon">
+                  <ion-icon name="shuffle-outline" role="img" class="md hydrated"></ion-icon>
+              </span>
+              <span>Shuffle</span>
+          </button>
+      </div>
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column has-text-centered">
+        <p style="text-align:center;">
+          <video id="test-obstacle" width="80%" height="80%" controls autoplay loop muted>
+            <source src="media/videos/obstacle/baseline.mp4" type="video/mp4">
+          </video>
+        </p>
+      </div>
+    </div>
+    <p class="content" style="text-align: left">
+      For evaluation, we position obstacles with diverse shapes in the middle of the workspace. The <i>DemoGen</i>-enabled policy successfully avoids various unseen obstacles.
+      Notably, in scenarios without obstacles, the agent follows the lower trajectory observed in the source demonstrations, indicating its responsiveness to environmental variations.
+    </p>
+</div>
+
+<br>
+<hr style="margin-top: 1em;">
+<div class="rows is-centered has-text-centered">
+  <h2 id="empirical" class="title is-3" style="margin-bottom: 1em; color:#008000">Empirical Study: Spatial Generalization of Visuomotor Policies</h2>
+  <div class="columns is-vcentered  is-centered">
+    <img style="width: 100%;" src="media/images/empirical.png" class="method-image" />
+  </div>
+
+  <div style="display: flex; justify-content: space-between;">
+    <div style="width: 46%; text-align: left;">
+      (Left) <i>Qualitative visualization of the spatial effective range.</i> The grid maps display discretized tabletop workspaces
+      from a bird's-eye view under different demonstration configurations. In general, the spatial effective range of visuomotor policies
+      can be approximated by the union of the areas surrounding the demonstrated object placements.
+    </div>
+    <div style="width: 52%; text-align: left;">
+      (Right) <i>Quantitative benchmarking on the spatial generalization capacity.</i> Both 3D representations and pre-trained 
+      2D visual encoders contribute to improved spatial generalization capabilities. However, they are unable to fundamentally solve
+      the spatial generalization problem. The spatial capacity is still developed through extensive traversal of the workspace from the given demonstrations.
+    </div>
+  </div>
+  
+</div>
+
+
+<br>
+<hr style="margin-top: 1em;">
+<div class="rows is-centered has-text-centered">
+  <h2 id="limitation" class="title is-3" style="margin-bottom: 1.1em; color:#008000">Limitation: The Visual Mismatch Problem</h2>
+  <div class="columns">
+    <div class="columns is-vcentered  is-centered">
+      <img style="width: 80%;" src="media/images/3_cube.png" class="method-image" />
+    </div>
+
+    <div class="columns is-vcentered  is-centered">
+      <p class="content" style="text-align: left">
+        As objects move through 3D space, their appearance changes due to variations in perspective. Under the constraint of a single-view
+        observation, synthetic demonstrations consistently reflect a fixed side of the object's appearance seen in the source demonstration.
+        This discrepancy causes a visual mismatch between the synthetic and real-captured data.
+      </p>
+    </div>
+  </div>
+  
+  
+</div>
+
+
+<br>
+<hr style="margin-top: 1em;">
+<h2 class="title is-3 is-centered has-text-centered" style="color:#008000;">Acknowledgments</h2>
+<p style="text-align: left">
+  We would like to give special thanks to Galaxea Inc. for providing the R1 robot and
+   Jianning Cui, Ke Dong, Haoyin Fan, and Yixiu Li for their technical support. 
+   We also thank Gu Zhang, Han Zhang, and Songbo Hu for hardware setup and data collection, 
+   Yifeng Zhu and Tianming Wei for discussing the controllers in the simulator, 
+   and Widyadewi Soedarmadji for the presentation advice.
+Tsinghua University Dushi Program supports this project.
+</p>
+
+
+<br>
+<hr style="margin-top: 1em;">
+<h2 class="title is-3 is-centered has-text-centered" style="color:#008000;">BibTeX</h2>
+<p class="bibtex" style="text-align: left">
+  <!-- @article{xue2025demogen, <br>
+  &nbsp;&nbsp;title={DemoGen: Synthetic Demonstration Generation for Data-Efficient Visuomotor Policy Learning}, <br>
+  &nbsp;&nbsp;author={Xue, Zhengrong and Deng, Shuying and Chen, Zhenyang and Wang, Yixuan and Yuan, Zhecheng and Xu, Huazhe}, <br>
+  &nbsp;&nbsp;journal={arXiv preprint arXiv:2502.16932}, <br>
+  &nbsp;&nbsp;year={2025} <br>
+  } -->
+</p>
+
+</section>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content has-text-centered">
+          <p>
+            Website template borrowed from <a href="https://data-scaling-laws.github.io/">Data-Scaling-Law</a>. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('shuffle-video').addEventListener('click', function() {
+    var taskSelect = document.getElementById('task-selection');
+    var spatialSelect = document.getElementById('spatial-selection');
+    randomizeSelect(taskSelect);
+    randomizeSelect(spatialSelect);
+    console.log("Shuffle", taskSelect.value, spatialSelect.value)
+    SelectTestVideo();
+  });
+
+  function randomizeSelect(selectElement) {
+    var options = selectElement.options;
+    random_move = Math.random();
+    var randomIndex = Math.floor(Math.random() * options.length);
+    selectElement.selectedIndex = randomIndex;
+  }
+
+  function SelectTestVideo() {
+    var task_name = document.getElementById("task-selection").value;
+    var spatial_id = document.getElementById("spatial-selection").value;
+
+    console.log("SelectTestVideo", task_name, spatial_id)
+    var video = document.getElementById("test-video");
+    video.src = "media/videos/evaluations/" + task_name + "/" + spatial_id + ".mp4";
+    video.play();
+  }
+</script>
+
+<script>
+  document.getElementById('shuffle-obstacle').addEventListener('click', function() {
+    var objectSelect = document.getElementById('object-obstacle');
+    randomizeSelect(objectSelect);
+    console.log("Shuffle", objectSelect.value)
+    SelectObstacle();
+  });
+
+  function randomizeSelect(selectElement) {
+    var options = selectElement.options;
+    random_move = Math.random();
+    var randomIndex = Math.floor(Math.random() * options.length);
+    selectElement.selectedIndex = randomIndex;
+  }
+
+  function SelectObstacle() {
+    var object_obstacle = document.getElementById("object-obstacle").value;
+
+    console.log("SelectObstacle", object_obstacle)
+    var video = document.getElementById("test-obstacle");
+    video.src = "media/videos/obstacle/" + object_obstacle + ".mp4";
+    video.play();
+  }
+</script>
+
+
+<script>
+  document.getElementById('shuffle-disturb').addEventListener('click', function() {
+    var policySelect = document.getElementById('policy-disturb');
+    var directionSelect = document.getElementById('direction-disturb');
+    var numberSelect = document.getElementById('number-disturb');
+    randomizeSelect(policySelect);
+    randomizeSelect(directionSelect);
+    randomizeSelect(numberSelect);
+    console.log("Shuffle", policySelect.value, policySelect.value, numberSelect.value)
+    SelectDisturb();
+  });
+
+  function randomizeSelect(selectElement) {
+    var options = selectElement.options;
+    random_move = Math.random();
+    var randomIndex = Math.floor(Math.random() * options.length);
+    selectElement.selectedIndex = randomIndex;
+  }
+
+  function SelectDisturb() {
+    var policy = document.getElementById("policy-disturb").value;
+    var direction = document.getElementById("direction-disturb").value;
+    var number = document.getElementById("number-disturb").value;
+
+    console.log("SelectTestVideo", policy, direction, number)
+    var video = document.getElementById("test-disturb");
+    video.src = "media/videos/disturb_eval/" + policy + "/" + direction + "/" + number + ".mp4";
+    video.play();
+  }
+</script>
+
+<style>
+  .button.is-info.is-outlined:focus,
+  .button.is-info.is-outlined:active {
+    background-color: transparent;
+    border-color: #008000;
+    color: #008000;
+    box-shadow: none;
+  }
+
+  .button.is-info.is-outlined:hover {
+    background-color: #008000;
+    color: #fff;
+  }
+
+  .button.is-info.is-outlined:hover .icon ion-icon,
+  .button.is-info.is-outlined:hover span {
+    color: #fff;
+  }
+</style>
+
+</body>
+</html>
