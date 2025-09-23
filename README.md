@@ -1,2 +1,2 @@
-# FSP-policy.github.io
-Project page for paper "Learning Visuotactile Policy for Fast and Stable Placement"
+# Learning Visuotactile Policy for Fast and Stable Placement
+Project Page
