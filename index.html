@@ -202,7 +202,7 @@
             <img src="./static/images/teaser_01.png" alt="Image description" style="max-height: 60%; height: auto;">
           </div>
           <div class="content has-text-justified">
-            <p>
+            <p style="font-size: 1.1rem">
           Traditional goal-reaching placement leads to toppling under complex contact dynamics. 
           Our FSP policy attains stability by online adjusting the end-effector's local configurations and 
           global velocity once the object contacts the table, and retracts back to the initial position afterwards.
@@ -220,7 +220,7 @@
         <div class="column is-four-fifths">
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
-            <p style="font-size: 1.0rem">
+            <p style="font-size: 1.1rem">
               Placement is an essential yet underexplored component of robotic manipulation. Its contact-rich 
               nature poses significant challenges for perception and control, making it inherently difficult 
               to balance efficiency and stability. We present <b>Fast and Stable Placement (FSP)</b>, a visuotactile policy learning framework that 
@@ -262,11 +262,26 @@
         <h2 class="title is-3  has-text-centered">Method</h2>
         <img src="static/images/pipeline_01.png" alt="Banner Image" style="width: 100%; height: auto;">
         <div class="content">
-          <p>
+          <p style="font-size: 1.1rem">
         Overview of the FSP policy learning framework. An oracle FSP policy &pi;<sup>*</sup> is first trained with 
         privileged knowledge (a), which is then distilled into a deployable policy &pi;<sup>†</sup> that operates 
         on domain-invariant observations (b). Given the real-world setup (c), the policy trained in the 
         aligned simulated environment can be directly deployed on real robots (d).
+          </p>
+        </div>
+        <div style="text-align: center; padding: 20px;">
+            <img src="static/images/MAE_archi_01.png" alt="Banner Image" 
+                style="max-width: 70%; height: auto; display: inline-block;">
+        </div>
+        <div class="content">
+          <p style="font-size: 1.1rem">
+        To actively complete missing details, we incorporate multi-view observations and pretrain a masked autoencoder 
+        (MAE) on multi-view depth maps, enhancing the policy’s spatial reasoning. Fig. (a) provides details of the architecture.
+         The MAE module is required to reconstruct the masked portion of the image based on visible patches, enforcing 
+         the policy to infer the unobserved geometry.  For the FSP policy, we also segment out the object region, 
+         which may be partially occluded during placement, and the pretrained MAE encoder leverages these observations 
+         to implicitly imagine the complete geometry, as shown in Fig. (b). For efficiency,  we adopt a lightweight 
+         U-Net to conduct segmentation, which is trained with mask labels provided by SAM2.
           </p>
         </div>
       </div>
@@ -704,10 +719,17 @@
           </video>
         </div>
       </div>
+
+      <div class="content">
+        <p style="font-size: 1.1rem">
+      FSP enables robust placement across diverse object shapes and goals.
+        </p>
+      </div>
     </div>
   </div>
   </div>
 
+  <br></br>
   <!-- BibTex citation -->
   <!-- <section class="section" style="margin-top: -50px;" id="BibTeX">
     <div class="container is-max-desktop content">
